@@ -52,3 +52,5 @@ jobs:
       
       - name: Run joiner script
         run: python src/script.py
+        env:
+          LICHESS_TOKENS: ${{ secrets.LICHESS_TOKENS }}
