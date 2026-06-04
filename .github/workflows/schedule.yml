@@ -1,0 +1,40 @@
+name: Exact Scheduled Task
+
+on:
+  schedule:
+    - cron: '58 7 * * *'
+    - cron: '18 8 * * *'
+    - cron: '38 8 * * *'
+    - cron: '58 8 * * *'
+    - cron: '18 9 * * *'
+    - cron: '38 9 * * *'
+    - cron: '58 9 * * *'
+    - cron: '18 10 * * *'
+    - cron: '38 10 * * *'
+    - cron: '58 10 * * *'
+    - cron: '18 11 * * *'
+    - cron: '38 11 * * *'
+    - cron: '58 11 * * *'
+    - cron: '18 12 * * *'
+    - cron: '38 12 * * *'
+    - cron: '58 12 * * *'
+    - cron: '18 13 * * *'
+    - cron: '38 13 * * *'
+    - cron: '58 13 * * *'
+    - cron: '18 14 * * *'
+    - cron: '38 14 * * *'
+    - cron: '58 14 * * *'
+    - cron: '18 15 * * *'
+    - cron: '38 15 * * *'
+    - cron: '58 15 * * *'
+    - cron: '18 16 * * *'
+    - cron: '38 16 * * *'
+    - cron: '58 16 * * *'
+
+jobs:
+  run-exact:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run your script
+        run: python src/script.py
