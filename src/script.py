@@ -22,12 +22,19 @@ TOKENS = ["lip_x0XM4YKNPcJQnZN6XfMK",
 
 # самые поздние турниры идут первыми, а надо наоборот, а нельзя
 # пздц...
-tournaments = get(f"https://lichess.org/api/team/{TEAM_NAME}/swiss",
-                  params={
-                      "max": 100, # а чё ещё делать, надеемся, что Даня не создаст триллиард турниров
-                      "status": "created",
-                      "name": TOURNEY_NAME
-                  }).content
+response = get(f"https://lichess.org/api/team/{TEAM_NAME}/swiss",
+               params={
+                   "max": 100, # а чё ещё делать, надеемся, что Даня не создаст триллиард турниров
+                   "status": "created",
+                   "name": TOURNEY_NAME
+                  })
+
+if response.status_code == 200:
+    print(f"{datetime.now(timezone.utc)}: Турниры получены")
+else:
+    print(f"{datetime.now(timezone.utc)}: Турниры не получены. Ошибка {response.status_code}")
+
+tournaments = response.content
 
 tournaments = str(tournaments, encoding="utf-8")[:-1].split("\n")[::-1]
 
@@ -38,7 +45,7 @@ if len(tournaments) == 0:
 for token in TOKENS:
     sleep(2)
     try:
-        post(
+        response = post(
             f"https://lichess.org/api/swiss/{loads(tournaments[0])["id"]}/withdraw",
             headers={
                 "Content-Type": "application/x-www-form-urlencoded",
@@ -48,6 +55,11 @@ for token in TOKENS:
     except Exception as e:
         print(f"{datetime.now(timezone.utc)}: {e}")
 
+    if response.status_code == 200:
+        print(f"{datetime.now(timezone.utc)}: Токен {token} успешно покинул турнир")
+    else:
+        print(f"{datetime.now(timezone.utc)}: Токен {token} не покинул турнир. Ошибка {response.status_code}")
+
 if len(tournaments) == 1:
     exit()
 
@@ -55,7 +67,7 @@ if len(tournaments) == 1:
 for token in TOKENS:
     sleep(2)
     try:
-        post(
+        response = post(
             f"https://lichess.org/api/swiss/{loads(tournaments[1])["id"]}/join",
             headers={
                 "Content-Type": "application/x-www-form-urlencoded",
@@ -64,3 +76,8 @@ for token in TOKENS:
         )
     except Exception as e:
         print(f"{datetime.now(timezone.utc)}: {e}")
+
+    if response.status_code == 200:
+        print(f"{datetime.now(timezone.utc)}: Токен {token} успешно зашёл в турнир")
+    else:
+        print(f"{datetime.now(timezone.utc)}: Токен {token} не зашёл в турнир. Ошибка {response.status_code}")
