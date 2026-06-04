@@ -39,7 +39,7 @@ if len(tournaments) == 0:
 # Получаем ID турниров до циклов (чтобы не парсить каждый раз)
 try:
     first_tournament_id = loads(tournaments[0])["id"]
-    print(f"{datetime.now(timezone.utc)}: Первый турнир ID: {first_tournament_id}")
+    print(f"{datetime.now(timezone.utc)}: ID первого турнира: {first_tournament_id}")
 except Exception as e:
     print(f"{datetime.now(timezone.utc)}: Ошибка парсинга первого турнира: {e}")
     exit()
@@ -47,7 +47,7 @@ except Exception as e:
 if len(tournaments) > 1:
     try:
         second_tournament_id = loads(tournaments[1])["id"]
-        print(f"{datetime.now(timezone.utc)}: Второй турнир ID: {second_tournament_id}")
+        print(f"{datetime.now(timezone.utc)}: ID второго турнира: {second_tournament_id}")
     except Exception as e:
         print(f"{datetime.now(timezone.utc)}: Ошибка парсинга второго турнира: {e}")
         second_tournament_id = None
