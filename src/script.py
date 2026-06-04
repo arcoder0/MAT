@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from os import getenv
 from requests import get, post
 from json import loads
 from time import sleep
@@ -7,13 +8,7 @@ from datetime import datetime, timezone
 TEAM_NAME = "mixailov_alex_team"
 TOURNEY_NAME = "15 DOLLARS SWISS QUALIFIER"
 
-TOKENS = ["lip_x0XM4YKNPcJQnZN6XfMK",
-          "lip_Rwo9qC1rAz5s7pWflPia",
-          "lip_rcbxM3BvI95GtvgKLnIp",
-          "lip_7VsQmGe4ZdcBhymuMRXT",
-          "lip_l4RDuGQf4riodk4TMF6u",
-          "lip_nc0jL8yzzAX3JuBAYevm",
-          "lip_RQPiXynOrz85lOo3cwUk"]
+TOKENS = os.getenv("LICHESS_TOKENS", "").split(",")
 
 # Получаем предстоящие турниры
 response = get(f"https://lichess.org/api/team/{TEAM_NAME}/swiss",
