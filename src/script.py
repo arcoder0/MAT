@@ -2,6 +2,7 @@
 from requests import get, post
 from json import loads
 from time import sleep
+from datetime import datetime, timezone
 
 TEAM_NAME = "mixailov_alex_team"
 TOURNEY_NAME = "15 DOLLARS SWISS QUALIFIER"
@@ -36,13 +37,16 @@ if len(tournaments) == 0:
 # Покидаем предстоящий турнир
 for token in TOKENS:
     sleep(2)
-    post(
-        f"https://lichess.org/api/swiss/{loads(tournaments[0])["id"]}/withdraw",
-        headers={
-            "Content-Type": "application/x-www-form-urlencoded",
-            "Authorization": f"Bearer {token}"
-        },
-    )
+    try:
+        post(
+            f"https://lichess.org/api/swiss/{loads(tournaments[0])["id"]}/withdraw",
+            headers={
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Authorization": f"Bearer {token}"
+            },
+        )
+    except Exception as e:
+        print(f"{datetime.now(timezone.utc)}: {e}")
 
 if len(tournaments) == 1:
     exit()
@@ -50,10 +54,13 @@ if len(tournaments) == 1:
 # Заходим в следующий турнир
 for token in TOKENS:
     sleep(2)
-    post(
-        f"https://lichess.org/api/swiss/{loads(tournaments[1])["id"]}/join",
-        headers={
-            "Content-Type": "application/x-www-form-urlencoded",
-            "Authorization": f"Bearer {token}"
-        },
-    )
+    try:
+        post(
+            f"https://lichess.org/api/swiss/{loads(tournaments[1])["id"]}/join",
+            headers={
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Authorization": f"Bearer {token}"
+            },
+        )
+    except Exception as e:
+        print(f"{datetime.now(timezone.utc)}: {e}")
