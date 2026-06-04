@@ -51,4 +51,4 @@ jobs:
           pip install requests
       
       - name: Run joiner script
-        run: python src/joiner.py
+        run: python src/script.py
