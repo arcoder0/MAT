@@ -63,11 +63,11 @@ for token in TOKENS:
             headers={"Authorization": f"Bearer {token}"}
         )
         if resp.status_code == 200:
-            print(f"{datetime.now(timezone.utc)}: Токен {token} успешно покинул турнир")
+            print(f"{datetime.now(timezone.utc)}: Юзер успешно покинул турнир")
         else:
-            print(f"{datetime.now(timezone.utc)}: Токен {token} не покинул турнир. Ошибка {resp.status_code}")
+            print(f"{datetime.now(timezone.utc)}: Юзер не покинул турнир. Ошибка {resp.status_code}")
     except Exception as e:
-        print(f"{datetime.now(timezone.utc)}: Токен {token} - ошибка запроса: {e}")
+        print(f"{datetime.now(timezone.utc)}: Ошибка запроса при покидании: {e}")
 
 if second_tournament_id is None:
     print(f"{datetime.now(timezone.utc)}: Больше турниров нет")
@@ -82,8 +82,8 @@ for token in TOKENS:
             headers={"Authorization": f"Bearer {token}"}
         )
         if resp.status_code == 200:
-            print(f"{datetime.now(timezone.utc)}: Токен {token} успешно зашёл в турнир")
+            print(f"{datetime.now(timezone.utc)}: Юзер успешно зашёл в турнир")
         else:
-            print(f"{datetime.now(timezone.utc)}: Токен {token} не зашёл в турнир. Ошибка {resp.status_code}")
+            print(f"{datetime.now(timezone.utc)}: Юзер не зашёл в турнир. Ошибка {resp.status_code}")
     except Exception as e:
-        print(f"{datetime.now(timezone.utc)}: Токен {token} - ошибка запроса: {e}")
+        print(f"{datetime.now(timezone.utc)}: Ошибка запроса при присоединении: {e}")
