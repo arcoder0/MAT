@@ -46,7 +46,7 @@ for token in TOKENS:
     sleep(2)
     try:
         response = post(
-            f"https://lichess.org/api/swiss/{loads(tournaments[0])["id"]}/withdraw",
+            f"https://lichess.org/api/swiss/{loads(tournaments[0])['id']}/withdraw",
             headers={
                 "Content-Type": "application/x-www-form-urlencoded",
                 "Authorization": f"Bearer {token}"
@@ -68,7 +68,7 @@ for token in TOKENS:
     sleep(2)
     try:
         response = post(
-            f"https://lichess.org/api/swiss/{loads(tournaments[1])["id"]}/join",
+            f"https://lichess.org/api/swiss/{loads(tournaments[1])['id']}/join",
             headers={
                 "Content-Type": "application/x-www-form-urlencoded",
                 "Authorization": f"Bearer {token}"
