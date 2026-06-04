@@ -8,7 +8,7 @@ from datetime import datetime, timezone
 TEAM_NAME = "mixailov_alex_team"
 TOURNEY_NAME = "15 DOLLARS SWISS QUALIFIER"
 
-TOKENS = os.getenv("LICHESS_TOKENS", "").split(",")
+TOKENS = getenv("LICHESS_TOKENS", "").split(",")
 
 # Получаем предстоящие турниры
 response = get(f"https://lichess.org/api/team/{TEAM_NAME}/swiss",
