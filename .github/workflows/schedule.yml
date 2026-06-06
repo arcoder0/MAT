@@ -53,4 +53,5 @@ jobs:
       - name: Run joiner script
         run: python src/script.py
         env:
+          TEAM_NAMES: ${{ secrets.TEAM_NAMES }}
           LICHESS_TOKENS: ${{ secrets.LICHESS_TOKENS }}
