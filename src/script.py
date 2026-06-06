@@ -23,19 +23,19 @@ for team_name in TEAM_NAMES:
       print(f"{datetime.now(timezone.utc)}: Турниры в {team_name} получены")
   else:
       print(f"{datetime.now(timezone.utc)}: Турниры в {team_name} не получены. Ошибка {response.status_code}")
-      exit()
+      continue
   
   # Парсим турниры
   tournaments_text = response.text.strip()
   if not tournaments_text:
       print(f"{datetime.now(timezone.utc)}: Нет турниров в {team_name}")
-      exit()
+      continue
   
   tournaments = tournaments_text.split("\n")[::-1]
   
   if len(tournaments) == 0:
       print(f"{datetime.now(timezone.utc)}: Нет турниров в {team_name}")
-      exit()
+      continue
   
   # Получаем ID турниров до циклов (чтобы не парсить каждый раз)
   try:
@@ -43,7 +43,7 @@ for team_name in TEAM_NAMES:
       print(f"{datetime.now(timezone.utc)}: ID первого турнира: {first_tournament_id}")
   except Exception as e:
       print(f"{datetime.now(timezone.utc)}: Ошибка парсинга первого турнира: {e}")
-      exit()
+      continue
   
   if len(tournaments) > 1:
       try:
@@ -72,7 +72,7 @@ for team_name in TEAM_NAMES:
   
   if second_tournament_id is None:
       print(f"{datetime.now(timezone.utc)}: Больше турниров нет")
-      exit()
+      continue
   
   # Заходим в следующий турнир
   for token in TOKENS:
