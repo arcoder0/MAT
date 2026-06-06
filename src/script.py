@@ -64,9 +64,9 @@ for team_name in TEAM_NAMES:
               headers={"Authorization": f"Bearer {token}"}
           )
           if resp.status_code == 200:
-              print(f"{datetime.now(timezone.utc)}: Юзер успешно покинул турнир")
+              print(f"{datetime.now(timezone.utc)}: Юзер {token[:8]} успешно покинул турнир")
           else:
-              print(f"{datetime.now(timezone.utc)}: Юзер не покинул турнир. Ошибка {resp.status_code}")
+              print(f"{datetime.now(timezone.utc)}: Юзер {token[:8]} не покинул турнир. Ошибка {resp.status_code}")
       except Exception as e:
           print(f"{datetime.now(timezone.utc)}: Ошибка запроса при покидании: {e}")
   
@@ -83,9 +83,9 @@ for team_name in TEAM_NAMES:
               headers={"Authorization": f"Bearer {token}"}
           )
           if resp.status_code == 200:
-              print(f"{datetime.now(timezone.utc)}: Юзер успешно зашёл в турнир")
+              print(f"{datetime.now(timezone.utc)}: Юзер {token[:8]} успешно зашёл в турнир")
           else:
-              print(f"{datetime.now(timezone.utc)}: Юзер не зашёл в турнир. Ошибка {resp.status_code}")
+              print(f"{datetime.now(timezone.utc)}: Юзер {token[:8]} не зашёл в турнир. Ошибка {resp.status_code}")
       except Exception as e:
           print(f"{datetime.now(timezone.utc)}: Ошибка запроса при присоединении: {e}")
 
