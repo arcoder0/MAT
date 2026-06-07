@@ -67,6 +67,7 @@ for team_name in TEAM_NAMES:
               print(f"{datetime.now(timezone.utc)}: Юзер {token[:8]} успешно покинул турнир")
           else:
               print(f"{datetime.now(timezone.utc)}: Юзер {token[:8]} не покинул турнир. Ошибка {resp.status_code}")
+              print(f"    {resp.json()}")
       except Exception as e:
           print(f"{datetime.now(timezone.utc)}: Ошибка запроса при покидании: {e}")
   
@@ -86,6 +87,7 @@ for team_name in TEAM_NAMES:
               print(f"{datetime.now(timezone.utc)}: Юзер {token[:8]} успешно зашёл в турнир")
           else:
               print(f"{datetime.now(timezone.utc)}: Юзер {token[:8]} не зашёл в турнир. Ошибка {resp.status_code}")
+              print(f"    {resp.json()}")
       except Exception as e:
           print(f"{datetime.now(timezone.utc)}: Ошибка запроса при присоединении: {e}")
 
